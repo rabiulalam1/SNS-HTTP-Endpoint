@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 const PORT = 5000;
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Get-OK' });
+  res.json({ message: 'Get-OK' }).status(200);
 });
 
 app.post('/', (req, res) => {
