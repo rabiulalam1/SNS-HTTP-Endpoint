@@ -9,7 +9,8 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 const path = require('path');
 app.use(cors());
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 const PORT = 5000;
 
 const logEvents = async (message, logFileName) => {
@@ -34,7 +35,7 @@ const logger = (req, res, next) => {
     `${req.method}\t${req.url}\t${req.headers.origin}\t${req.body}`,
     'reqLog.log'
   );
-  console.log(`${req.method} ${req.path}`);
+  console.log(`${req.method} ${req.path} ${req}`);
   next();
 };
 
