@@ -8,9 +8,15 @@ const { v4: uuid } = require('uuid');
 const fs = require('fs');
 const fsPromises = require('fs').promises;
 const path = require('path');
+const bodyParser = require('body-parser');
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use((req, res, next) => {
+  if (req.get('x-amz-sns-meesage-type'))
+    req.headers['content-type'] = 'application/json';
+  next();
+});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 const PORT = 5000;
 
 const logEvents = async (message, logFileName) => {
