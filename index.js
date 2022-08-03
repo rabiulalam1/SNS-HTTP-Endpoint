@@ -41,7 +41,11 @@ const logger = (req, res, next) => {
 app.use(logger);
 
 app.get('/', (req, res) => {
-  res.json({ message: 'OK' });
+  res.json({ message: 'Get-OK' });
+});
+
+app.post('/', (req, res) => {
+  res.json({ message: 'Post-OK' }).status(200);
 });
 
 app.listen(PORT, () => {
